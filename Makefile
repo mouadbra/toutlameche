@@ -4,7 +4,7 @@ CFLAGS = -Wall -Wextra -g `pkg-config --cflags gtk+-3.0`
 LDFLAGS = `pkg-config --libs gtk+-3.0`
 
 # Cibles principales
-OBJ = main.o saisie.o sauvegarde.o chargement.o sequence.o tab_dyn.o arbre.o hash_x86_64.o list_x86_64.o ihm.o
+OBJ = main.o saisie.o sauvegarde.o chargement.o sequence.o tab_dyn.o arbre.o hash_x86_64.o list_x86_64.o
 TARGET = prog
 
 # Règle par défaut
@@ -15,7 +15,7 @@ $(TARGET): $(OBJ)
 	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) -lm $(LDFLAGS)
 
 # Règles pour les fichiers objets
-main.o: main.c saisie.h sauvegarde.h chargement.h sequence.h tab_dyn.h arbre.h ihm.h hash.h
+main.o: main.c saisie.h sauvegarde.h chargement.h sequence.h tab_dyn.h arbre.h hash.h
 	$(CC) -DMODULE_ES -c $(CFLAGS) main.c
 
 saisie.o: saisie.c saisie.h arbre.h sequence.h hash.h
@@ -36,9 +36,7 @@ tab_dyn.o: tab_dyn.c tab_dyn.h
 arbre.o: arbre.c arbre.h tab_dyn.h sequence.h
 	$(CC) -c $(CFLAGS) arbre.c
 
-ihm.o: ihm.c ihm.h
-	$(CC) -c $(CFLAGS) ihm.c
-
 # Nettoyage des fichiers objets et de l'exécutable
 clean:
 	rm -f $(OBJ) $(TARGET)
+

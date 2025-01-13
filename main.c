@@ -7,15 +7,14 @@
 #include "saisie.h"
 #include "sauvegarde.h"
 #include "chargement.h"
-#include "ihm.h"
 #include <assert.h>
 
 
 #define MODULE_TABLEAU 0
 #define MODULE_SEQUENCE 0
 #define MODULE_ARBRE 0
-#define MODULE_ES 0
-#define MODULE_IHM 1
+#define MODULE_ES 1
+
 
 
 //int argc, char *argv[]
@@ -168,20 +167,6 @@ strhash_free(ht);
 printf("\nTests terminés avec succès.\n");
 
 
-#elif MODULE_IHM
-    gtk_init(&argc, &argv);
-    
-    struct strhash_table *ht = strhash_create(1024);
-    Arbre *racine = arbre_create(ht);
-
-    // Initialisation et lancement de l'IHM
-    ihm_init(&argc, &argv);
-    ihm_run(racine, ht);
-    
-    // Nettoyage
-    //ihm_cleanup(app);
-    strhash_free(ht);
-    arbre_destroy(racine);
 #elif MODULE_ES
 
 // Premier test : création et sauvegarde
